@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>malaysia prayer time API</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Prata&family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="main-container">
+            <h1>Greetings! This is malaysia prayer time</h1>
+           
+            <div class="white-section">
+                
+                <p>Prayer location: <span id="prayer-location"></span></p><br>
+                <p>Fajar: <span id="fajr-time"></span></p><br>
+                <p>Sunrise: <span id="sunrise-time"></span></p><br>
+                <p>Dhuhr: <span id="dhuhr-time"></span></p><br>
+                <p>Asr: <span id="asr-time"></span></p><br>
+                <p>Maghrib: <span id="maghrib-time"></span></p><br>
+                <p>Isha: <span id="isha-time"></span></p>
+                <script>
+                    $(function(){
+                        $.get('http://mpt.i906.my/mpt.json?code=sgr-9&filter=1') 
+                            .done(function(data){
+                                console.log(data);
+                                $('#prayer-location').html(data.response.place);
+                                $('#fajr-time').html(data.response.times[0]);
+                                $('#sunrise-time').html(data.response.times[1]);
+                                $('#dhuhr-time').html(data.response.times[2]);
+                                $('#asr-time').html(data.response.times[3]);
+                                $('#maghrib-time').html(data.response.times[4]);
+                                $('#isha-time').html(data.response.times[5]);
+                            })
+                    });
+                </script>
+            </div>
+        </div>
+    </body>
+    <footer></footer>
+</html>
