@@ -20,18 +20,19 @@
                 <p>Asr: <span id="asr-time"></span></p><br>
                 <p>Maghrib: <span id="maghrib-time"></span></p><br>
                 <p>Isha: <span id="isha-time"></span></p>
+        
                 <script>
                     $(function(){
                         $.get('http://mpt.i906.my/mpt.json?code=sgr-9&filter=1') 
                             .done(function(data){
                                 console.log(data);
                                 $('#prayer-location').html(data.response.place);
-                                $('#fajr-time').html(data.response.times[0]);
-                                $('#sunrise-time').html(data.response.times[1]);
-                                $('#dhuhr-time').html(data.response.times[2]);
-                                $('#asr-time').html(data.response.times[3]);
-                                $('#maghrib-time').html(data.response.times[4]);
-                                $('#isha-time').html(data.response.times[5]);
+                                $('#fajr-time').html(new Date(data.response.times[0] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
+                                $('#sunrise-time').html(new Date(data.response.times[1] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
+                                $('#dhuhr-time').html(new Date(data.response.times[2] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
+                                $('#asr-time').html(new Date(data.response.times[3] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
+                                $('#maghrib-time').html(new Date(data.response.times[4] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
+                                $('#isha-time').html(new Date(data.response.times[5] * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit' }));
                             })
                     });
                 </script>
